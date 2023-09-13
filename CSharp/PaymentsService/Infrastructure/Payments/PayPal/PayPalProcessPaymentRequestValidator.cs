@@ -6,7 +6,8 @@ public sealed class PayPalProcessPaymentRequestValidator : IProcessPaymentReques
 {
     private PayPalProcessPaymentRequestValidator() { }
 
-    private static readonly Lazy<PayPalProcessPaymentRequestValidator> _lazyInstance = new(() => new PayPalProcessPaymentRequestValidator());
+    private static readonly Lazy<PayPalProcessPaymentRequestValidator> _lazyInstance = 
+        new(() => new PayPalProcessPaymentRequestValidator());
     public static PayPalProcessPaymentRequestValidator Instance => _lazyInstance.Value;
 
     public RequestValidationResult ValidateRequest(ProcessPaymentBaseRequest request)

@@ -9,7 +9,9 @@ public sealed class PaymentProcessor
     private readonly IStatisticsService _statisticsService;
     private readonly IBaseLogger _logger;
 
-    public PaymentProcessor(IPaymentAbstractFactory factory, IStatisticsService statisticsService, IBaseLogger baseLogger)
+    public PaymentProcessor(IPaymentAbstractFactory factory, 
+        IStatisticsService statisticsService, 
+        IBaseLogger baseLogger)
     {
         _factory = factory;
         _statisticsService = statisticsService;
