@@ -1,10 +1,10 @@
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { IBaseLogger } from "../Logging/IBaseLogger";
 import { IStatisticsService } from "../Statistics/IStatisticsService";
 import { IPaymentAbstractFactory } from "./IPaymentAbstractFactory";
 import { PaymentProcessor } from "./PaymentProcessor";
 
-
+@injectable()
 export class PaymentProcessorFactory {
     constructor(
         @inject('StatisticsService') private statisticsService: IStatisticsService,

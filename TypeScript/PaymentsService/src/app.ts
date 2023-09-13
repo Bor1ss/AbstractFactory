@@ -1,6 +1,6 @@
+import 'reflect-metadata';
 import express, { Request, Response } from 'express';
 import { container, injectable, inject } from 'tsyringe';
-import 'reflect-metadata';
 import { IBaseLogger } from './Domain/Logging/IBaseLogger';
 import { ConsoleLogger } from './Infrastructure/Logging/ConsoleLogger' 
 import { IStatisticsService } from './Domain/Statistics/IStatisticsService';
@@ -31,7 +31,7 @@ container.register<PaymentProcessorFactory>('PaymentProcessorFactory', {
 
 
 app.post('/paypal/process', (req: Request, res: Response) => {
-  const ppRequest = req.body as ProcessPayPalPaymentRequest;
+  const ppRequest: ProcessPayPalPaymentRequest = req.body as ProcessPayPalPaymentRequest;
 
   const paymentProcessorFactory = container.resolve(PaymentProcessorFactory);
   const paymentProcessor = paymentProcessorFactory.getPaymentProcessor(PayPalPaymentFactory);
@@ -52,8 +52,8 @@ app.post('/googlepay/process', (req: Request, res: Response) => {
 
 app.post('/creditcard/process', (req: Request, res: Response) => {
     const ccRequest = req.body as ProcessCreditCardPaymentRequest;
-  
-    const paymentProcessorFactory = container.resolve(PaymentProcessorFactory);
+    
+    const paymentProcessorFactory = container.resolve<PaymentProcessorFactory>("PaymentProcessorFactory");
     const paymentProcessor = paymentProcessorFactory.getPaymentProcessor(CreditCardPaymentFactory);
     const resp = paymentProcessor.processPayment(ccRequest);
   

@@ -17,13 +17,9 @@ export class CreditCardProcessPaymentRequestValidator implements IProcessPayment
     }
 
     public validateRequest(request: ProcessPaymentBaseRequest): RequestValidationResult {
-        if (!(request instanceof ProcessCreditCardPaymentRequest)) {
-            return new RequestValidationResult(false, "BadRequest");
-        }
-
         const req = request as ProcessCreditCardPaymentRequest;
 
-        if (!req.cardInfo) {
+        if (!req || !req.cardInfo) {
             return new RequestValidationResult(false, "BadRequest");
         }
 

@@ -17,11 +17,11 @@ export class GooglePayProcessPaymentRequestValidator implements IProcessPaymentR
     }
 
     public validateRequest(request: ProcessPaymentBaseRequest): RequestValidationResult {
-        if (!(request instanceof ProcessGooglePayPaymentRequest)) {
+        const req = request as ProcessGooglePayPaymentRequest;
+
+        if(!req) {
             return new RequestValidationResult(false, "BadRequest");
         }
-
-        const req = request as ProcessGooglePayPaymentRequest;
 
         if (!req.email || req.email.trim() === "") {
             return new RequestValidationResult(false, "BadEmail");

@@ -12,24 +12,21 @@ export class PayPalProcessPaymentRequestValidator implements IProcessPaymentRequ
         if(!this.instance) {
             this.instance = new PayPalProcessPaymentRequestValidator()
         }
-        
+
         return this.instance;
     }
 
     public validateRequest(request: ProcessPaymentBaseRequest): RequestValidationResult {
-        if (!(request instanceof ProcessPayPalPaymentRequest)) {
-            return new RequestValidationResult(false, 'BadRequest');
+        const req = request as ProcessPayPalPaymentRequest;
+
+        if(!req) {
+            return new RequestValidationResult(false, "BadRequest");
         }
 
-        if (!request.token) {
+        if (!req.token) {
             return new RequestValidationResult(false, 'BadToken');
         }
 
         return new RequestValidationResult(true);
     }
 }
-
-
-
-
-

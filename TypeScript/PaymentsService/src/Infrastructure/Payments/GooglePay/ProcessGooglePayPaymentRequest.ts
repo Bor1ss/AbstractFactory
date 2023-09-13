@@ -1,10 +1,6 @@
 import { ProcessPaymentBaseRequest } from "../../../Domain/Payments/ProcessPaymentBaseRequest";
 
-export class ProcessGooglePayPaymentRequest extends ProcessPaymentBaseRequest {
-    constructor() {
-      super('GooglePay');
-    }
-  
-    public email?: string;
-    public token?: string;
+export interface ProcessGooglePayPaymentRequest extends ProcessPaymentBaseRequest {
+    email?: string;
+    token?: string;
   }

@@ -1,5 +1,7 @@
+import { injectable } from "tsyringe";
 import { IBaseLogger } from "../../Domain/Logging/IBaseLogger";
 
+@injectable()
 export class ConsoleLogger implements IBaseLogger {
     log(message: String): void;
     log(object: any): void;
